@@ -1,30 +1,26 @@
 package com.example.demo.controllers;
 import com.example.demo.model.ExecuteResponse;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api")
 public class SfmcController {
-    @GetMapping(value = "/")
-    public String save2() {
-        System.out.println("This is the SFMC save endpoint");
-        return "Saved";
-    }
     @PostMapping(value = "/execute")
-    public String execute() {
+    public ResponseEntity<ExecuteResponse> execute() {
         System.out.println("This is the SFMC execute endpoint");
         ExecuteResponse executeResponse = new ExecuteResponse();
         executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
-        return executeResponse.getFoundSignupDate();
+        return ResponseEntity.ok(executeResponse);
     }
     @PostMapping(value = "/save")
-    public String save() {
+    public ResponseEntity<String> save() {
         System.out.println("This is the SFMC save endpoint");
-        return "Saved";
+        return ResponseEntity.ok("Saved");
     }
     @PostMapping(value = "/publish")
-    public String publish() {
+    public ResponseEntity<String> publish() {
         System.out.println("This is the SFMC publish endpoint");
-        return "Published";
+        return ResponseEntity.ok("Published");
     }
 }
