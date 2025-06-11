@@ -1,23 +1,15 @@
 FROM eclipse-temurin:21-jdk-alpine as build
 WORKDIR /workspace/app
 
-# Copy maven executable and pom.xml
-COPY mvnw .
-COPY .mvn .mvn
+# Copy pom.xml and source code
 COPY pom.xml .
-
-# Make mvnw executable
-RUN chmod +x ./mvnw
-
-# Download all dependencies
-# This step is done separately to take advantage of Docker's caching mechanism
-RUN ./mvnw dependency:go-offline -B
-
-# Copy the project source
 COPY src src
 
+# Install Maven
+RUN apk add --no-cache maven
+
 # Package the application
-RUN ./mvnw package -DskipTests
+RUN mvn package -DskipTests
 
 # Create the final image
 FROM eclipse-temurin:21-jre-alpine
