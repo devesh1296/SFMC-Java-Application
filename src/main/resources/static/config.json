@@ -113,7 +113,7 @@
           {
             "UID_1": {
               "dataType": "Text",
-              "isNullable": true,
+              "isNullable": false,
               "direction": "in",
               "access": "visible"
             }
