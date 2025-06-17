@@ -12,7 +12,24 @@ public class SfmcController {
         System.out.println("This is the SFMC execute endpoint");
         System.out.println("Received request: " + requestBody.toString());
         ExecuteResponse executeResponse = new ExecuteResponse();
-        executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
+        if (requestBody.has("inArguments") && requestBody.get("inArguments").isArray()) {
+            JsonNode inArguments = requestBody.get("inArguments").get(0); // Get the first element
+            if (inArguments.has("message")) {
+                String message = inArguments.get("message").asText();
+                if (message.equals("unknownMessage")) {
+                    executeResponse.setAlternateSignupDate("2025-10-01T00:00:00Z");
+                } else{
+                    executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
+                }
+
+            } else {
+                executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
+            }
+        } else {
+            executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
+        }
+        System.out.println("ExecuteResponse FoundSignUpdate: " + executeResponse.getFoundSignupDate());
+        System.out.println("ExecuteResponse AlternateSignUpdate: " + executeResponse.getAlternateSignupDate());
         return ResponseEntity.ok(executeResponse);
     }
     @PostMapping(value = "/save")

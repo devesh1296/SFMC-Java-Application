@@ -28,7 +28,8 @@
       ],
       "outArguments": [
         {
-          "foundSignupDate": "default"
+          "foundSignupDate": "default",
+          "alternateSignupDate": "default"
         }
       ],
       "url": "https://sfmc-java-application-ds85.onrender.com/api/execute",
