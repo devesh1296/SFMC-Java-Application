@@ -133,9 +133,7 @@
               "isNullable": true,
               "direction": "out",
               "access": "visible"
-            }
-          },
-          {
+            },
             "alternateSignupDate": {
               "dataType": "Text",
               "isNullable": true,
