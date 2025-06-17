@@ -71,33 +71,25 @@
               "isNullable": false,
               "direction": "in",
               "access": "visible"
-            }
-          },
-          {
+            },
             "emailAddress": {
               "dataType": "Email",
               "isNullable": false,
               "direction": "in",
               "access": "visible"
-            }
-          },
-          {
+            },
             "FirstName": {
               "dataType": "Text",
               "isNullable": false,
               "direction": "in",
               "access": "visible"
-            }
-          },
-          {
+            },
             "LastName": {
               "dataType": "Text",
               "isNullable": false,
               "direction": "in",
               "access": "visible"
-            }
-          },
-          {
+            },
             "UID": {
               "dataType": "Text",
               "isNullable": true,
@@ -111,17 +103,13 @@
               "isNullable": false,
               "direction": "in",
               "access": "visible"
-            }
-          },
-          {
+            },
             "CartId": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
               "access": "visible"
-            }
-          },
-          {
+            },
             "ProductId": {
               "dataType": "Text",
               "isNullable": true,
@@ -133,6 +121,13 @@
         "outArguments": [
           {
             "foundSignupDate": {
+              "dataType": "Text",
+              "direction": "out",
+              "access": "visible"
+            }
+          },
+          {
+            "alternateSignupDate": {
               "dataType": "Text",
               "direction": "out",
               "access": "visible"
