@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 import com.example.demo.model.ExecuteResponse;
+import com.example.demo.model.ExecuteResponse1;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -8,16 +9,19 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping("/api")
 public class SfmcController {
     @PostMapping(value = "/execute")
-    public ResponseEntity<ExecuteResponse> execute(@RequestBody JsonNode requestBody) {
+    public ResponseEntity<Object> execute(@RequestBody JsonNode requestBody) {
         System.out.println("This is the SFMC execute endpoint");
         System.out.println("Received request: " + requestBody.toString());
         ExecuteResponse executeResponse = new ExecuteResponse();
+        ExecuteResponse1 executeResponse1 = new ExecuteResponse1();
         if (requestBody.has("inArguments") && requestBody.get("inArguments").isArray()) {
             JsonNode inArguments = requestBody.get("inArguments").get(0); // Get the first element
             if (inArguments.has("message")) {
                 String message = inArguments.get("message").asText();
                 if (message.equals("unknownMessage")) {
-                    executeResponse.setAlternateSignupDate("2025-10-01T00:00:00Z");
+                    executeResponse1.setAlternateSignupDate("2025-10-01T00:00:00Z");
+                    System.out.println("ExecuteResponse1: " + executeResponse1.getAlternateSignupDate());
+                    return ResponseEntity.ok(executeResponse1);
                 } else{
                     executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
                 }
@@ -28,8 +32,7 @@ public class SfmcController {
         } else {
             executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
         }
-        System.out.println("ExecuteResponse FoundSignUpdate: " + executeResponse.getFoundSignupDate());
-        System.out.println("ExecuteResponse AlternateSignUpdate: " + executeResponse.getAlternateSignupDate());
+        System.out.println("ExecuteResponse: " + executeResponse.getFoundSignupDate());
         return ResponseEntity.ok(executeResponse);
     }
     @PostMapping(value = "/save")
