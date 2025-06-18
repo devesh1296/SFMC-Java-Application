@@ -25,7 +25,8 @@
       ],
       "outArguments": [
         {
-          "foundSignupDate": "default"
+          "foundSignupDate": "default",
+          "alternateSignupDate": "default"
         }
       ],
       "url": "https://sfmc-java-application-73tr.onrender.com/api/execute",
@@ -114,6 +115,13 @@
         "outArguments": [
           {
             "foundSignupDate": {
+              "dataType": "Text",
+              "direction": "out",
+              "access": "visible"
+            }
+          },
+          {
+            "alternateSignupDate": {
               "dataType": "Text",
               "direction": "out",
               "access": "visible"
