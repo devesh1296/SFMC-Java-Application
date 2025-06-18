@@ -25,7 +25,9 @@
       ],
       "outArguments": [
         {
-          "foundSignupDate": "default",
+          "foundSignupDate": "default"
+        },
+        {
           "alternateSignupDate": "default"
         }
       ],
