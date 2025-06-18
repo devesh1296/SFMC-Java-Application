@@ -74,7 +74,7 @@
           {
             "PhoneNumber": {
               "dataType": "Text",
-              "isNullable": false,
+              "isNullable": true,
               "direction": "in",
               "access": "visible"
             }
@@ -82,7 +82,7 @@
           {
             "emailAddress": {
               "dataType": "Email",
-              "isNullable": false,
+              "isNullable": true,
               "direction": "in",
               "access": "visible"
             }
@@ -90,7 +90,7 @@
           {
             "FirstName": {
               "dataType": "Text",
-              "isNullable": false,
+              "isNullable": true,
               "direction": "in",
               "access": "visible"
             }
@@ -98,7 +98,7 @@
           {
             "LastName": {
               "dataType": "Text",
-              "isNullable": false,
+              "isNullable": true,
               "direction": "in",
               "access": "visible"
             }
