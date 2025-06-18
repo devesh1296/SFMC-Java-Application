@@ -24,10 +24,8 @@
         }
       ],
       "outArguments": [
-        {
-          "foundSignupDate": "default",
-          "alternateSignupDate": "default"
-        }
+          "foundSignupDate",
+          "alternateSignupDate"
       ],
       "url": "https://sfmc-java-application-73tr.onrender.com/api/execute",
       "timeout": 20000
@@ -118,7 +116,9 @@
               "dataType": "Text",
               "direction": "out",
               "access": "visible"
-            },
+            }
+          },
+          {
             "alternateSignupDate": {
               "dataType": "Text",
               "direction": "out",
