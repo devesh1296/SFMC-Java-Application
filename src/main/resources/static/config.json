@@ -20,7 +20,11 @@
           "FirstName": "{{Contact.Attribute.P13_test_D.FirstName}}",
           "LastName": "{{Contact.Attribute.P13_test_D.LastName}}",
           "PhoneNumber": "{{Contact.Attribute.P13_test_D.PhoneNumber}}",
-          "UID": "{{Contact.Attribute.P13_test_D.UID}}"
+          "UID": "{{Contact.Attribute.P13_test_D.UID}}",
+          "emailAddress_1": "{{Contact.Attribute.P13_test_D_2.emailAddress}}",
+          "UID_1": "{{Contact.Attribute.P13_test_D_2.UID}}",
+          "CartId": "{{Contact.Attribute.P13_test_D_2.CartId}}",
+          "ProductId": "{{Contact.Attribute.P13_test_D_2.ProductId}}"
         }
       ],
       "outArguments": [
@@ -107,6 +111,38 @@
           },
           {
             "UID": {
+              "dataType": "Text",
+              "isNullable": true,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "emailAddress_1": {
+              "dataType": "Email",
+              "isNullable": true,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "UID_1": {
+              "dataType": "Text",
+              "isNullable": true,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "CartId": {
+              "dataType": "Text",
+              "isNullable": true,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "ProductId": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
