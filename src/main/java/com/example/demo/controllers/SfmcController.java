@@ -17,22 +17,17 @@ public class SfmcController {
             if (inArguments.has("message")) {
                 String message = inArguments.get("message").asText();
                 if (message.equals("unknownMessage")) {
-                    executeResponse.setAlternateSignupDate("2025-10-01T00:00:00Z");
-                    executeResponse.setFoundSignupDate("test1");
-                    System.out.println("ExecuteResponse: " + executeResponse.getAlternateSignupDate());
+                    executeResponse.setFoundSignupDate("2024-10-01T00:00:00Z");
                     return ResponseEntity.ok(executeResponse);
                 } else{
                     executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
-                    executeResponse.setAlternateSignupDate("test2");
                 }
 
             } else {
                 executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
-                executeResponse.setAlternateSignupDate("test2");
             }
         } else {
             executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
-            executeResponse.setAlternateSignupDate("test2");
         }
         System.out.println("ExecuteResponse: " + executeResponse.getFoundSignupDate());
         return ResponseEntity.ok(executeResponse);
