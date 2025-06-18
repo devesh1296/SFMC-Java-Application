@@ -1,12 +1,10 @@
 package com.example.demo.controllers;
+import com.example.demo.model.ExecuteResponse;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -15,21 +13,31 @@ public class SfmcController {
     public ResponseEntity<Object> execute(@RequestBody JsonNode requestBody) {
         System.out.println("This is the SFMC execute endpoint");
         System.out.println("Received request: " + requestBody.toString());
+        ExecuteResponse executeResponse = new ExecuteResponse();
+        ArrayList<ExecuteResponse> outArgumentsArrayList = new ArrayList<>();
+        if (requestBody.has("inArguments") && requestBody.get("inArguments").isArray()) {
+            JsonNode inArguments = requestBody.get("inArguments").get(0); // Get the first element
+            if (inArguments.has("message")) {
+                String message = inArguments.get("message").asText();
+                if (message.equals("unknownMessage")) {
+                    executeResponse.setFoundSignupDate("test1");
+                    executeResponse.setAlternateSignupDate("test2");
+                    return ResponseEntity.ok(executeResponse);
+                } else{
+                    executeResponse.setFoundSignupDate("test1");
+                    executeResponse.setAlternateSignupDate("test2");
+                }
 
-        // Prepare the response list
-        List<Map<String, String>> responseList = new ArrayList<>();
-
-        // Add foundSignupDate object
-        Map<String, String> foundSignupDate = new HashMap<>();
-        foundSignupDate.put("foundSignupDate", "test1");
-        responseList.add(foundSignupDate);
-
-        // Add alternateSignupDate object
-        Map<String, String> alternateSignupDate = new HashMap<>();
-        alternateSignupDate.put("alternateSignupDate", "test2");
-        responseList.add(alternateSignupDate);
-
-        return ResponseEntity.ok(responseList);
+            } else {
+                executeResponse.setFoundSignupDate("test1");
+                executeResponse.setAlternateSignupDate("test2");
+            }
+        } else {
+            executeResponse.setFoundSignupDate("test1");
+            executeResponse.setAlternateSignupDate("test2");
+        }
+        System.out.println("ExecuteResponse: " + executeResponse.getFoundSignupDate());
+        return ResponseEntity.ok(executeResponse);
     }
     @PostMapping(value = "/save")
     public ResponseEntity<String> save(@RequestBody JsonNode requestBody) {
