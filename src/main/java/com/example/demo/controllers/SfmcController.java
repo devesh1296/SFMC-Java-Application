@@ -1,8 +1,11 @@
 package com.example.demo.controllers;
 import com.example.demo.model.ExecuteResponse;
+import com.example.demo.model.OutArguments;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api")
@@ -12,6 +15,8 @@ public class SfmcController {
         System.out.println("This is the SFMC execute endpoint");
         System.out.println("Received request: " + requestBody.toString());
         ExecuteResponse executeResponse = new ExecuteResponse();
+        OutArguments outArguments = new OutArguments();
+        ArrayList<ExecuteResponse> outArgumentsArrayList = new ArrayList<>();
         if (requestBody.has("inArguments") && requestBody.get("inArguments").isArray()) {
             JsonNode inArguments = requestBody.get("inArguments").get(0); // Get the first element
             if (inArguments.has("message")) {
@@ -19,7 +24,9 @@ public class SfmcController {
                 if (message.equals("unknownMessage")) {
                     executeResponse.setFoundSignupDate("2024-10-01T00:00:00Z");
                     executeResponse.setAlternateSignupDate("2025-10-01T00:00:00Z");
-                    return ResponseEntity.ok(executeResponse);
+                    outArgumentsArrayList.add(executeResponse);
+                    outArguments.setOutArguments(outArgumentsArrayList);
+                    return ResponseEntity.ok(outArguments);
                 } else{
                     executeResponse.setFoundSignupDate("2023-10-01T00:00:00Z");
                     executeResponse.setAlternateSignupDate("2025-10-01T00:00:00Z");
@@ -34,7 +41,9 @@ public class SfmcController {
             executeResponse.setAlternateSignupDate("2025-10-01T00:00:00Z");
         }
         System.out.println("ExecuteResponse: " + executeResponse.getFoundSignupDate());
-        return ResponseEntity.ok(executeResponse);
+        outArgumentsArrayList.add(executeResponse);
+        outArguments.setOutArguments(outArgumentsArrayList);
+        return ResponseEntity.ok(outArguments);
     }
     @PostMapping(value = "/save")
     public ResponseEntity<String> save(@RequestBody JsonNode requestBody) {
