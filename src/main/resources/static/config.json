@@ -24,7 +24,12 @@
           "emailAddress_1": "{{Contact.Attribute.P13_test_D_2.emailAddress}}",
           "UID_1": "{{Contact.Attribute.P13_test_D_2.UID}}",
           "CartId": "{{Contact.Attribute.P13_test_D_2.CartId}}",
-          "ProductId": "{{Contact.Attribute.P13_test_D_2.ProductId}}"
+          "ProductId": "{{Contact.Attribute.P13_test_D_2.ProductId}}",
+          "emailAddress_2": "{{Contact.Attribute.Test_P13.emailAddress}}",
+          "FirstName_2": "{{Contact.Attribute.Test_P13.FirstName}}",
+          "LastName_2": "{{Contact.Attribute.Test_P13.LastName}}",
+          "PhoneNumber_2": "{{Contact.Attribute.Test_P13.PhoneNumber}}",
+          "UID_2": "{{Contact.Attribute.Test_P13.UID}}"
         }
       ],
       "outArguments": [
@@ -143,6 +148,46 @@
           },
           {
             "ProductId": {
+              "dataType": "Text",
+              "isNullable": true,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "PhoneNumber_2": {
+              "dataType": "Text",
+              "isNullable": true,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "emailAddress_2": {
+              "dataType": "Email",
+              "isNullable": true,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "FirstName_2": {
+              "dataType": "Text",
+              "isNullable": true,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "LastName_2": {
+              "dataType": "Text",
+              "isNullable": true,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "UID_2": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
