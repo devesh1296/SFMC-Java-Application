@@ -118,9 +118,7 @@
               "dataType": "Text",
               "direction": "out",
               "access": "visible"
-            }
-          },
-          {
+            },
             "alternateSignupDate": {
               "dataType": "Text",
               "direction": "out",
