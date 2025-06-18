@@ -115,7 +115,6 @@
           {
             "foundSignupDate": {
               "dataType": "Text",
-              "isNullable": true,
               "direction": "out",
               "access": "visible"
             }
