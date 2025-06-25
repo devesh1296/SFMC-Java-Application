@@ -16,20 +16,16 @@
     "execute": {
       "inArguments": [
         {
-          "emailAddress": "{{Contact.Attribute.P13_test_D.emailAddress}}",
-          "FirstName": "{{Contact.Attribute.P13_test_D.FirstName}}",
-          "LastName": "{{Contact.Attribute.P13_test_D.LastName}}",
-          "PhoneNumber": "{{Contact.Attribute.P13_test_D.PhoneNumber}}",
-          "UID": "{{Contact.Attribute.P13_test_D.UID}}",
-          "emailAddress_1": "{{Contact.Attribute.P13_test_D_2.emailAddress}}",
-          "UID_1": "{{Contact.Attribute.P13_test_D_2.UID}}",
-          "CartId": "{{Contact.Attribute.P13_test_D_2.CartId}}",
-          "ProductId": "{{Contact.Attribute.P13_test_D_2.ProductId}}",
-          "emailAddress_2": "{{Contact.Attribute.Test_P13.emailAddress}}",
-          "FirstName_2": "{{Contact.Attribute.Test_P13.FirstName}}",
-          "LastName_2": "{{Contact.Attribute.Test_P13.LastName}}",
-          "PhoneNumber_2": "{{Contact.Attribute.Test_P13.PhoneNumber}}",
-          "UID_2": "{{Contact.Attribute.Test_P13.UID}}"
+          "emailAddress": "{{Contact.Attribute.Inbox_T.emailAddress}}",
+          "FirstName": "{{Contact.Attribute.Inbox_T.FirstName}}",
+          "dateAdded": "{{Contact.Attribute.Inbox_T.dateAdded}}",
+          "flag": "{{Contact.Attribute.Inbox_T.flag}}",
+          "user_type": "{{Contact.Attribute.Inbox_T.user_type}}",
+          "CID": "{{Contact.Attribute.Inbox_T_1.CID}}",
+          "Platform": "{{Contact.Attribute.Inbox_T_1.Platform}}",
+          "message": "{{Contact.Attribute.Inbox_T_1.message}}",
+          "deeplink": "{{Contact.Attribute.Inbox_T_1.deeplink}}",
+          "imageurl": "{{Contact.Attribute.Inbox_T_1.imageurl}}"
         }
       ],
       "outArguments": [
@@ -83,17 +79,9 @@
       "execute": {
         "inArguments": [
           {
-            "PhoneNumber": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
             "emailAddress": {
               "dataType": "Email",
-              "isNullable": true,
+              "isNullable": false,
               "direction": "in",
               "access": "visible"
             }
@@ -107,7 +95,15 @@
             }
           },
           {
-            "LastName": {
+            "dateAdded": {
+              "dataType": "Text",
+              "isNullable": false,
+              "direction": "in",
+              "access": "visible"
+            }
+          },
+          {
+            "flag": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
@@ -115,7 +111,7 @@
             }
           },
           {
-            "UID": {
+            "user_type": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
@@ -123,15 +119,7 @@
             }
           },
           {
-            "emailAddress_1": {
-              "dataType": "Email",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "UID_1": {
+            "CID": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
@@ -139,7 +127,7 @@
             }
           },
           {
-            "CartId": {
+            "Platform": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
@@ -147,7 +135,7 @@
             }
           },
           {
-            "ProductId": {
+            "message": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
@@ -155,7 +143,7 @@
             }
           },
           {
-            "PhoneNumber_2": {
+            "deeplink": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
@@ -163,31 +151,7 @@
             }
           },
           {
-            "emailAddress_2": {
-              "dataType": "Email",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "FirstName_2": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "LastName_2": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "UID_2": {
+            "imageurl": {
               "dataType": "Text",
               "isNullable": true,
               "direction": "in",
