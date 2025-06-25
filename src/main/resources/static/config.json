@@ -21,11 +21,11 @@
           "dateAdded": "{{Contact.Attribute.Inbox_T.dateAdded}}",
           "flag": "{{Contact.Attribute.Inbox_T.flag}}",
           "user_type": "{{Contact.Attribute.Inbox_T.user_type}}",
-          "CID": "{{Contact.Attribute.Inbox_T_1.CID}}",
-          "Platform": "{{Contact.Attribute.Inbox_T_1.Platform}}",
-          "message": "{{Contact.Attribute.Inbox_T_1.message}}",
-          "deeplink": "{{Contact.Attribute.Inbox_T_1.deeplink}}",
-          "imageurl": "{{Contact.Attribute.Inbox_T_1.imageurl}}"
+          "CID": "{{Contact.Attribute.Inbox_T.CID}}",
+          "Platform": "{{Contact.Attribute.Inbox_T.Platform}}",
+          "message": "{{Contact.Attribute.Inbox_T.message}}",
+          "deeplink": "{{Contact.Attribute.Inbox_T.deeplink}}",
+          "imageurl": "{{Contact.Attribute.Inbox_T.imageurl}}"
         }
       ],
       "outArguments": [
