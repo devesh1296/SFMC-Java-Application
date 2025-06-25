@@ -104,7 +104,7 @@
           },
           {
             "flag": {
-              "dataType": "Text",
+              "dataType": "Boolean",
               "isNullable": true,
               "direction": "in",
               "access": "visible"
