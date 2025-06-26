@@ -38,10 +38,8 @@
     Select your SMS message:
     <select id="select1">
         <option value="">Select an option</option>
-        <option value="someMessage">Some SMS</option>
-        <option value="anotherMessage">Another SMS</option>
-        <option value="thirdMessage">Third SMS</option>
-        <option value="unknownMessage">Unknown SMS</option>
+        <option value={{Contact.Attribute.Inbox_T.emailAddress}}>EmailAddress</option>
+        <option value={{Contact.Attribute.Inbox_T.FirstName}}>FirstName</option>
     </select>
 
     <button id="toggleLastStep">Toggle Last Step</button>
