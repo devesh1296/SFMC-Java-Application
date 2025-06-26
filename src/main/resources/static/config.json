@@ -8,7 +8,7 @@
   "key": "REST-1",
   "lang": {
     "en-US": {
-      "name": "Inbox And P13N Activity",
+      "name": "RDNC Activity",
       "description": "An example REST activity using workflow API v1.1 format."
     }
   },
