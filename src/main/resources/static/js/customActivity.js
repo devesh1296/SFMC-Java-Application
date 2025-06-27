@@ -180,6 +180,13 @@ define(["postmonger"], function (Postmonger) {
     }
 
     function save() {
+
+        connection.trigger('requestSchema');
+        connection.on('requestedSchema', function (data) {
+            // save schema
+            console.log('*** Schema ***', JSON.stringify(data['schema']));
+        });
+
         var name = $("#select1").find("option:selected").html();
         var value = getMessage();
 
