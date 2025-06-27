@@ -36,16 +36,16 @@
           "alternateSignupDate": "default"
         }
       ],
-      "url": "https://sfmc-java-application-1.onrender.com/api/execute",
+      "url": "https://sfmc-java-application-2.onrender.com/api/execute",
       "timeout": 20000
     }
   },
   "configurationArguments": {
     "save": {
-      "url": "https://sfmc-java-application-1.onrender.com/api/save"
+      "url": "https://sfmc-java-application-2.onrender.com/api/save"
     },
     "publish": {
-      "url": "https://sfmc-java-application-1.onrender.com/api/publish"
+      "url": "https://sfmc-java-application-2.onrender.com/api/publish"
     }
   },
   "wizardSteps": [
