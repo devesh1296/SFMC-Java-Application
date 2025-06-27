@@ -180,7 +180,7 @@ define(["postmonger"], function (Postmonger) {
     }
 
     function save() {
-
+        console.log('Inside Save Method');
         connection.trigger('requestSchema');
         connection.on('requestedSchema', function (data) {
             // save schema
