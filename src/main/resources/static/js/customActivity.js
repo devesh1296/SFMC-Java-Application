@@ -184,6 +184,7 @@ define(["postmonger"], function (Postmonger) {
         connection.trigger('requestSchema');
         connection.on('requestedSchema', function (data) {
             // save schema
+            console.log('Inside Save Method RequestedSchema');
             console.log('*** Schema ***', JSON.stringify(data, null, 2));
         });
 
