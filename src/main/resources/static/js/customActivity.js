@@ -16,6 +16,7 @@ define(["postmonger"], function (Postmonger) {
     $(window).ready(onRender);
 
     connection.on("initActivity", initialize);
+    connection.on('requestedSchema', requestSch);
     connection.on("requestedTokens", onGetTokens);
     connection.on("requestedEndpoints", onGetEndpoints);
 
@@ -27,6 +28,7 @@ define(["postmonger"], function (Postmonger) {
         // JB will respond the first time 'ready' is called with 'initActivity'
         connection.trigger("ready");
 
+        connection.trigger('requestSchema');
         connection.trigger("requestTokens");
         connection.trigger("requestEndpoints");
 
@@ -88,6 +90,12 @@ define(["postmonger"], function (Postmonger) {
             $("#message").html(message);
             showStep(null, 3);
         }
+    }
+
+    function requestSch (data) {
+        // save schema
+        console.log('Inside Save Method RequestedSchema');
+        console.log('*** Schema ***', JSON.stringify(data, null, 2));
     }
 
     function onGetTokens(tokens) {
@@ -181,12 +189,6 @@ define(["postmonger"], function (Postmonger) {
 
     function save() {
         console.log('Inside Save Method');
-        connection.trigger('requestSchema');
-        connection.on('requestedSchema', function (data) {
-            // save schema
-            console.log('Inside Save Method RequestedSchema');
-            console.log('*** Schema ***', JSON.stringify(data, null, 2));
-        });
 
         var name = $("#select1").find("option:selected").html();
         var value = getMessage();
