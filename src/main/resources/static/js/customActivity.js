@@ -116,7 +116,7 @@ define(["postmonger"], function (Postmonger) {
                 const field = schema[i];
                 const option = document.createElement("option");
                 option.text = field.name; // Display the field name
-                option.value = field.key; // Use the field key as the option value
+                option.value = "{{" + field.key + "}}"; // Use the field key as the option value
                 selectElement.appendChild(option);
             }
         } else {
@@ -235,10 +235,10 @@ define(["postmonger"], function (Postmonger) {
         // may be overridden as desired.
         payload.name = name;
 
-
-        const keyList = schema.map(item => `{{${item.key}}}`);
-        console.log("Extracted keys wrapped in double curly braces:");
-        console.log(keyList);
+        //
+        // const keyList = schema.map(item => `{{${item.key}}}`);
+        // console.log("Extracted keys wrapped in double curly braces:");
+        // console.log(keyList);
         var hasInArguments = Boolean(
             payload["arguments"] &&
             payload["arguments"].execute &&
@@ -247,9 +247,9 @@ define(["postmonger"], function (Postmonger) {
         );
         var inArguments = payload["arguments"].execute.inArguments;
         if(hasInArguments){
-            payload["arguments"].execute.inArguments = [{ message: value, ...keyList}, ...inArguments];
+            payload["arguments"].execute.inArguments = [{ message: value}, ...inArguments];
         } else{
-            payload["arguments"].execute.inArguments = [{ message: value, ...keyList}];
+            payload["arguments"].execute.inArguments = [{ message: value}];
         }
 
         payload["metaData"].isConfigured = true;
