@@ -98,8 +98,24 @@ define(["postmonger"], function (Postmonger) {
 
     function requestSch (data) {
         // save schema
-        schema = data.schema;
         console.log('Inside Save Method RequestedSchema');
+        schema = data.schema;
+        selectElement.innerHTML = '';
+
+        // Add a default option
+        const defaultOption = document.createElement('option');
+        defaultOption.text = 'Select a Field';
+        defaultOption.value = '';
+        selectElement.appendChild(defaultOption);
+
+        // Populate the dropdown with schema fields
+        for (let i = 0; i < schema.length; i++) {
+            const field = schema[i];
+            const option = document.createElement('option');
+            option.text = field.name; // Display the field name
+            option.value = field.key; // Use the field key as the option value
+            selectElement.appendChild(option);
+        }
         console.log('*** Schema ***', JSON.stringify(data, null, 2));
     }
 
