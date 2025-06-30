@@ -14,20 +14,7 @@
   },
   "arguments": {
     "execute": {
-      "inArguments": [
-        {
-          "emailAddress": "{{Contact.Attribute.Inbox_T.emailAddress}}",
-          "FirstName": "{{Contact.Attribute.Inbox_T.FirstName}}",
-          "dateAdded": "{{Contact.Attribute.Inbox_T.dateAdded}}",
-          "flag": "{{Contact.Attribute.Inbox_T.flag}}",
-          "user_type": "{{Contact.Attribute.Inbox_T.user_type}}",
-          "CID": "{{Contact.Attribute.Inbox_T.CID}}",
-          "Platform": "{{Contact.Attribute.Inbox_T.Platform}}",
-          "message": "{{Contact.Attribute.Inbox_T.message}}",
-          "deeplink": "{{Contact.Attribute.Inbox_T.deeplink}}",
-          "imageurl": "{{Contact.Attribute.Inbox_T.imageurl}}"
-        }
-      ],
+      "inArguments": [],
       "outArguments": [
         {
           "foundSignupDate": "default"
@@ -77,88 +64,7 @@
   "schema": {
     "arguments": {
       "execute": {
-        "inArguments": [
-          {
-            "emailAddress": {
-              "dataType": "Email",
-              "isNullable": false,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "FirstName": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "dateAdded": {
-              "dataType": "Text",
-              "isNullable": false,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "flag": {
-              "dataType": "Boolean",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "user_type": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "CID": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "Platform": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "message": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "deeplink": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          },
-          {
-            "imageurl": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "in",
-              "access": "visible"
-            }
-          }
-        ],
+        "inArguments": [],
         "outArguments": [
           {
             "foundSignupDate": {
