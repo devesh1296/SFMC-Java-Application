@@ -215,6 +215,7 @@ define(["postmonger"], function (Postmonger) {
 
 
         const keyList = schema.map(item => `{{${item.key}}}`);
+        console.log("Extracted keys wrapped in double curly braces:");
         console.log(keyList);
         var hasInArguments = Boolean(
             payload["arguments"] &&
