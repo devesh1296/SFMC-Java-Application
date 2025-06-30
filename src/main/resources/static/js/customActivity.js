@@ -6,7 +6,7 @@ define(["postmonger"], function (Postmonger) {
     var lastStepEnabled = false;
     var eventDefinitionKey;
     var schema;
-    var selectElement;
+    var selectElement = document.getElementById('select1');
     var steps = [
         // initialize to the same value as what's set in config.json for consistency
         { label: "Step 1", key: "step1" },
@@ -101,21 +101,26 @@ define(["postmonger"], function (Postmonger) {
         // save schema
         console.log('Inside Save Method RequestedSchema');
         schema = data.schema;
-        selectElement.innerHTML = '';
+        if (selectElement) {
+            // Clear existing options
+            selectElement.innerHTML = '';
 
-        // Add a default option
-        const defaultOption = document.createElement('option');
-        defaultOption.text = 'Select a Field';
-        defaultOption.value = '';
-        selectElement.appendChild(defaultOption);
+            // Add a default option
+            const defaultOption = document.createElement('option');
+            defaultOption.text = 'Select a Field';
+            defaultOption.value = '';
+            selectElement.appendChild(defaultOption);
 
-        // Populate the dropdown with schema fields
-        for (let i = 0; i < schema.length; i++) {
-            const field = schema[i];
-            const option = document.createElement('option');
-            option.text = field.name; // Display the field name
-            option.value = field.key; // Use the field key as the option value
-            selectElement.appendChild(option);
+            // Populate the dropdown with schema fields
+            for (let i = 0; i < schema.length; i++) {
+                const field = schema[i];
+                const option = document.createElement('option');
+                option.text = field.name; // Display the field name
+                option.value = field.key; // Use the field key as the option value
+                selectElement.appendChild(option);
+            }
+        } else {
+            console.error("selectElement is not defined. Make sure the dropdown ID is correct and the code runs after the DOM is ready.");
         }
         console.log('*** Schema ***', JSON.stringify(data, null, 2));
     }
