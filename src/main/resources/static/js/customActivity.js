@@ -5,6 +5,7 @@ define(["postmonger"], function (Postmonger) {
     var payload = {};
     var lastStepEnabled = false;
     var eventDefinitionKey;
+    var schema;
     var steps = [
         // initialize to the same value as what's set in config.json for consistency
         { label: "Step 1", key: "step1" },
@@ -97,6 +98,7 @@ define(["postmonger"], function (Postmonger) {
 
     function requestSch (data) {
         // save schema
+        schema = data.schema;
         console.log('Inside Save Method RequestedSchema');
         console.log('*** Schema ***', JSON.stringify(data, null, 2));
     }
@@ -211,8 +213,9 @@ define(["postmonger"], function (Postmonger) {
         // may be overridden as desired.
         payload.name = name;
 
-        var firstNameBinding = `{{Event.${eventDefinitionKey}.FirstName}}`;
-        console.log(firstNameBinding);
+
+        const keyList = schema.map(item => `{{${item.key}}}`);
+        console.log(keyList);
         var hasInArguments = Boolean(
             payload["arguments"] &&
             payload["arguments"].execute &&
@@ -221,9 +224,9 @@ define(["postmonger"], function (Postmonger) {
         );
         var inArguments = payload["arguments"].execute.inArguments;
         if(hasInArguments){
-            payload["arguments"].execute.inArguments = [{ message: value, name: firstNameBinding}, ...inArguments];
+            payload["arguments"].execute.inArguments = [{ message: value, ...keyList}, ...inArguments];
         } else{
-            payload["arguments"].execute.inArguments = [{ message: value, name: firstNameBinding}];
+            payload["arguments"].execute.inArguments = [{ message: value, ...keyList}];
         }
 
         payload["metaData"].isConfigured = true;
