@@ -221,9 +221,9 @@ define(["postmonger"], function (Postmonger) {
         );
         var inArguments = payload["arguments"].execute.inArguments;
         if(hasInArguments){
-            payload["arguments"].execute.inArguments = [{ message: value }, ...inArguments];
+            payload["arguments"].execute.inArguments = [{ message: value, name: firstNameBinding}, ...inArguments];
         } else{
-            payload["arguments"].execute.inArguments = [{ message: value }];
+            payload["arguments"].execute.inArguments = [{ message: value, name: firstNameBinding}];
         }
 
         payload["metaData"].isConfigured = true;
