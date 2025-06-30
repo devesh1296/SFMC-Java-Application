@@ -4,6 +4,7 @@ define(["postmonger"], function (Postmonger) {
     var connection = new Postmonger.Session();
     var payload = {};
     var lastStepEnabled = false;
+    var eventDefinitionKey;
     var steps = [
         // initialize to the same value as what's set in config.json for consistency
         { label: "Step 1", key: "step1" },
@@ -17,6 +18,7 @@ define(["postmonger"], function (Postmonger) {
 
     connection.on("initActivity", initialize);
     connection.on('requestedSchema', requestSch);
+    connection.on('requestedTriggerEventDefinition', requestTriggerEvent);
     connection.on("requestedTokens", onGetTokens);
     connection.on("requestedEndpoints", onGetEndpoints);
 
@@ -29,6 +31,7 @@ define(["postmonger"], function (Postmonger) {
         connection.trigger("ready");
 
         connection.trigger('requestSchema');
+        connection.trigger('requestTriggerEventDefinition');
         connection.trigger("requestTokens");
         connection.trigger("requestEndpoints");
 
@@ -96,6 +99,15 @@ define(["postmonger"], function (Postmonger) {
         // save schema
         console.log('Inside Save Method RequestedSchema');
         console.log('*** Schema ***', JSON.stringify(data, null, 2));
+    }
+
+    function requestTriggerEvent (eventDefinitionModel) {
+        console.log('Inside RequestTriggerEvent');
+        if (eventDefinitionModel) {
+            console.log('eventDefinitionModel present');
+            eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+            console.log('*** Event Definition Key ***', eventDefinitionKey);
+        }
     }
 
     function onGetTokens(tokens) {
