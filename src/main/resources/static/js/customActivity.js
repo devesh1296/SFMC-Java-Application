@@ -210,6 +210,9 @@ define(["postmonger"], function (Postmonger) {
         // set by this activity's config.json file.  Any property
         // may be overridden as desired.
         payload.name = name;
+
+        var firstNameBinding = `{{Event.${eventDefinitionKey}.FirstName}}`;
+        console.log(firstNameBinding);
         var hasInArguments = Boolean(
             payload["arguments"] &&
             payload["arguments"].execute &&
