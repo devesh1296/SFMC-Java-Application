@@ -6,7 +6,7 @@ define(["postmonger"], function (Postmonger) {
     var lastStepEnabled = false;
     var eventDefinitionKey;
     var schema;
-    var selectElement = document.getElementById('select1');
+    var selectElement = document.getElementById("select1");
     var steps = [
         // initialize to the same value as what's set in config.json for consistency
         { label: "Step 1", key: "step1" },
@@ -103,18 +103,18 @@ define(["postmonger"], function (Postmonger) {
         schema = data.schema;
         if (selectElement) {
             // Clear existing options
-            selectElement.innerHTML = '';
+            selectElement.innerHTML = "";
 
             // Add a default option
-            const defaultOption = document.createElement('option');
-            defaultOption.text = 'Select a Field';
-            defaultOption.value = '';
+            const defaultOption = document.createElement("option");
+            defaultOption.text = "Select a Field";
+            defaultOption.value = "";
             selectElement.appendChild(defaultOption);
 
             // Populate the dropdown with schema fields
             for (let i = 0; i < schema.length; i++) {
                 const field = schema[i];
-                const option = document.createElement('option');
+                const option = document.createElement("option");
                 option.text = field.name; // Display the field name
                 option.value = field.key; // Use the field key as the option value
                 selectElement.appendChild(option);
