@@ -6,6 +6,7 @@ define(["postmonger"], function (Postmonger) {
     var lastStepEnabled = false;
     var eventDefinitionKey;
     var schema;
+    var selectElement;
     var steps = [
         // initialize to the same value as what's set in config.json for consistency
         { label: "Step 1", key: "step1" },
