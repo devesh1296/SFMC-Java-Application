@@ -15,14 +15,7 @@
   "arguments": {
     "execute": {
       "inArguments": [],
-      "outArguments": [
-        {
-          "foundSignupDate": "default"
-        },
-        {
-          "alternateSignupDate": "default"
-        }
-      ],
+      "outArguments": [],
       "url": "https://sfmc-java-application-2.onrender.com/api/execute",
       "timeout": 20000
     }
@@ -65,22 +58,7 @@
     "arguments": {
       "execute": {
         "inArguments": [],
-        "outArguments": [
-          {
-            "foundSignupDate": {
-              "dataType": "Text",
-              "direction": "out",
-              "access": "visible"
-            }
-          },
-          {
-            "alternateSignupDate": {
-              "dataType": "Text",
-              "direction": "out",
-              "access": "visible"
-            }
-          }
-        ]
+        "outArguments": []
       }
     }
   }

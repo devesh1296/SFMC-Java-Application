@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @RequestMapping("/api")
 public class SfmcController {
     @PostMapping(value = "/execute")
-    public ResponseEntity<Object> execute(@RequestBody JsonNode requestBody) {
+    public void execute(@RequestBody JsonNode requestBody) {
         System.out.println("This is the SFMC execute endpoint");
         System.out.println("Received request: " + requestBody.toString());
         ExecuteResponse executeResponse = new ExecuteResponse();
@@ -22,7 +22,6 @@ public class SfmcController {
                 if (message.equals("unknownMessage")) {
                     executeResponse.setFoundSignupDate("test1");
                     executeResponse.setAlternateSignupDate("test2");
-                    return ResponseEntity.ok(executeResponse);
                 } else{
                     executeResponse.setFoundSignupDate("test1");
                     executeResponse.setAlternateSignupDate("test2");
@@ -37,7 +36,6 @@ public class SfmcController {
             executeResponse.setAlternateSignupDate("test2");
         }
         System.out.println("ExecuteResponse: " + executeResponse.getFoundSignupDate());
-        return ResponseEntity.ok(executeResponse);
     }
     @PostMapping(value = "/save")
     public ResponseEntity<String> save(@RequestBody JsonNode requestBody) {
