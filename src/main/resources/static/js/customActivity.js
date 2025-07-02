@@ -101,7 +101,8 @@ define(["postmonger"], function (Postmonger) {
         // save schema
         console.log('Inside Save Method RequestedSchema');
         schema = data.schema;
-        window.schema = schema;
+        window.schema = data.schema;
+        console.log("Schema set to:", window.schema);
         // if (selectElement) {
         //     // Clear existing options
         //     selectElement.innerHTML = "";
