@@ -147,7 +147,7 @@ define(["postmonger"], function (Postmonger) {
             let inputElement;
 
             // 1. Dropdown for FirstName and CID
-            if (["emailAddress"].includes(field.name)) {
+            if (["emailAddress", "CID", "FirstName"].includes(field.name)) {
                 inputElement = document.createElement("select");
                 inputElement.id = field.name;
 
@@ -163,36 +163,39 @@ define(["postmonger"], function (Postmonger) {
             }
 
             // 2. Platform dropdown
-            else if (field.name === "Platform") {
-                inputElement = document.createElement("select");
-                inputElement.id = "Platform";
 
-                ["", "android", "ios"].forEach((opt) => {
-                    const option = document.createElement("option");
-                    option.value = opt;
-                    option.text = opt === "" ? "-- Select Platform --" : opt;
-                    inputElement.appendChild(option);
-                });
-            }
+            inputElement = document.createElement("select");
+            inputElement.id = "Platform";
+
+            ["", "android", "ios"].forEach((opt) => {
+                const option = document.createElement("option");
+                option.value = opt;
+                option.text = opt === "" ? "-- Select Platform --" : opt;
+                inputElement.appendChild(option);
+            });
 
             // 3. message box (multiline with char limit and variable insertion)
-            else if (field.name === "message") {
-                inputElement = document.createElement("textarea");
-                inputElement.id = "message";
-                inputElement.maxLength = 160;
-                inputElement.rows = 4;
-                inputElement.cols = 40;
-                inputElement.placeholder = "Type your message here...";
-            }
+            inputElement = document.createElement("textarea");
+            inputElement.id = "message";
+            inputElement.maxLength = 160;
+            inputElement.rows = 4;
+            inputElement.cols = 40;
+            inputElement.placeholder = "Type your message here...";
 
             // 4. deeplink / imageurl - single line input
-            else if (["deeplink", "imageurl"].includes(field.name)) {
-                inputElement = document.createElement("input");
-                inputElement.type = "text";
-                inputElement.id = field.name;
-                inputElement.maxLength = field.length || 1000;
-                inputElement.placeholder = `Enter ${field.name}`;
-            }
+
+            inputElement = document.createElement("input");
+            inputElement.type = "text";
+            inputElement.id = "deeplink";
+            inputElement.maxLength = field.length || 1000;
+            inputElement.placeholder = `Enter deeplink`;
+
+            inputElement = document.createElement("input");
+            inputElement.type = "text";
+            inputElement.id = "imageurl";
+            inputElement.maxLength = field.length || 1000;
+            inputElement.placeholder = `Enter imageurl`;
+
 
             if (inputElement) {
                 inputElement.style.marginBottom = "10px";
