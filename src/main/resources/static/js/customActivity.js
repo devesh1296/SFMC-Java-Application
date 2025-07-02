@@ -158,7 +158,7 @@ define(["postmonger"], function (Postmonger) {
 
                 const dynamicOption = document.createElement("option");
                 dynamicOption.value = `{{${field.key}}}`;
-                dynamicOption.text = `{{${field.name}}}`;
+                dynamicOption.text = field.name;
                 inputElement.appendChild(dynamicOption);
             }
 
@@ -183,10 +183,6 @@ define(["postmonger"], function (Postmonger) {
                 inputElement.rows = 4;
                 inputElement.cols = 40;
                 inputElement.placeholder = "Type your message here...";
-
-                const helper = document.createElement("small");
-                helper.innerText = `Character limit: 160. Use if needed.`;
-                form.appendChild(helper);
             }
 
             // 4. deeplink / imageurl - single line input
