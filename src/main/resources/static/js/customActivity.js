@@ -101,27 +101,28 @@ define(["postmonger"], function (Postmonger) {
         // save schema
         console.log('Inside Save Method RequestedSchema');
         schema = data.schema;
-        if (selectElement) {
-            // Clear existing options
-            selectElement.innerHTML = "";
-
-            // Add a default option
-            const defaultOption = document.createElement("option");
-            defaultOption.text = "Select a Field";
-            defaultOption.value = "";
-            selectElement.appendChild(defaultOption);
-
-            // Populate the dropdown with schema fields
-            for (let i = 0; i < schema.length; i++) {
-                const field = schema[i];
-                const option = document.createElement("option");
-                option.text = field.name; // Display the field name
-                option.value = "{{" + field.key + "}}"; // Use the field key as the option value
-                selectElement.appendChild(option);
-            }
-        } else {
-            console.error("selectElement is not defined. Make sure the dropdown ID is correct and the code runs after the DOM is ready.");
-        }
+        window.schema = schema;
+        // if (selectElement) {
+        //     // Clear existing options
+        //     selectElement.innerHTML = "";
+        //
+        //     // Add a default option
+        //     const defaultOption = document.createElement("option");
+        //     defaultOption.text = "Select a Field";
+        //     defaultOption.value = "";
+        //     selectElement.appendChild(defaultOption);
+        //
+        //     // Populate the dropdown with schema fields
+        //     for (let i = 0; i < schema.length; i++) {
+        //         const field = schema[i];
+        //         const option = document.createElement("option");
+        //         option.text = field.name; // Display the field name
+        //         option.value = "{{" + field.key + "}}"; // Use the field key as the option value
+        //         selectElement.appendChild(option);
+        //     }
+        // } else {
+        //     console.error("selectElement is not defined. Make sure the dropdown ID is correct and the code runs after the DOM is ready.");
+        // }
         console.log('*** Schema ***', JSON.stringify(data, null, 2));
     }
 

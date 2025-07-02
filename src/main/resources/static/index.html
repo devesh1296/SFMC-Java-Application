@@ -17,7 +17,28 @@
 
             require(config, dependencies);
         })();
-    </script>
+    </script><script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        // Wait for schema to be available
+        setTimeout(() => {
+            if (window.schema && window.schema.length > 0) {
+                const container = document.createElement("div");
+                container.id = "schemaDropdowns";
+
+                // Iterate over schema and create a dropdown for each object
+                window.schema.forEach((field, index) => {
+                    console.log("Field Name:", field.name);
+                    console.log("Field Key:", field.key);
+                });
+
+                // Append the container to the body or a specific element
+                document.body.appendChild(container);
+            } else {
+                console.error("Schema is not available.");
+            }
+        }, 1000); // Delay to ensure schema is populated
+    });
+</script>
 
     <!--Styles-->
     <style type="text/css">
