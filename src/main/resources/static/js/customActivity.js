@@ -304,39 +304,73 @@ define(["postmonger"], function (Postmonger) {
         }
     }
 
+    // function save() {
+    //     console.log('Inside Save Method');
+    //
+    //     var name = $("#select1").find("option:selected").html();
+    //     var value = getMessage();
+    //
+    //     // 'payload' is initialized on 'initActivity' above.
+    //     // Journey Builder sends an initial payload with defaults
+    //     // set by this activity's config.json file.  Any property
+    //     // may be overridden as desired.
+    //     payload.name = name;
+    //
+    //     //
+    //     // const keyList = schema.map(item => `{{${item.key}}}`);
+    //     // console.log("Extracted keys wrapped in double curly braces:");
+    //     // console.log(keyList);
+    //     var hasInArguments = Boolean(
+    //         payload["arguments"] &&
+    //         payload["arguments"].execute &&
+    //         payload["arguments"].execute.inArguments &&
+    //         payload["arguments"].execute.inArguments.length > 0
+    //     );
+    //     var inArguments = payload["arguments"].execute.inArguments;
+    //     if(hasInArguments){
+    //         payload["arguments"].execute.inArguments = [{ message: value}, ...inArguments];
+    //     } else{
+    //         payload["arguments"].execute.inArguments = [{ message: value}];
+    //     }
+    //
+    //     payload["metaData"].isConfigured = true;
+    //
+    //     connection.trigger("updateActivity", payload);
+    // }
+
     function save() {
         console.log('Inside Save Method');
 
-        var name = $("#select1").find("option:selected").html();
-        var value = getMessage();
+        // Set activity name (optional, based on a field or static)
+        payload.name = "Custom SMS Activity";
 
-        // 'payload' is initialized on 'initActivity' above.
-        // Journey Builder sends an initial payload with defaults
-        // set by this activity's config.json file.  Any property
-        // may be overridden as desired.
-        payload.name = name;
+        // Build inArguments from all dynamic inputs
+        const inArguments = [];
 
-        //
-        // const keyList = schema.map(item => `{{${item.key}}}`);
-        // console.log("Extracted keys wrapped in double curly braces:");
-        // console.log(keyList);
-        var hasInArguments = Boolean(
-            payload["arguments"] &&
-            payload["arguments"].execute &&
-            payload["arguments"].execute.inArguments &&
-            payload["arguments"].execute.inArguments.length > 0
-        );
-        var inArguments = payload["arguments"].execute.inArguments;
-        if(hasInArguments){
-            payload["arguments"].execute.inArguments = [{ message: value}, ...inArguments];
-        } else{
-            payload["arguments"].execute.inArguments = [{ message: value}];
-        }
+        const formElements = document.querySelectorAll("#dynamicForm input, #dynamicForm select, #dynamicForm textarea");
 
-        payload["metaData"].isConfigured = true;
+        formElements.forEach((element) => {
+            const key = element.id;
+            const value = element.value?.trim() ?? "";
+            if (key && value !== "") {
+                const arg = {};
+                arg[key] = value;
+                inArguments.push(arg);
+            }
+        });
+
+        payload.arguments = payload.arguments || {};
+        payload.arguments.execute = payload.arguments.execute || {};
+
+        payload.arguments.execute.inArguments = inArguments;
+        payload.metaData = payload.metaData || {};
+        payload.metaData.isConfigured = true;
+
+        console.log("Saving Payload:", JSON.stringify(payload, null, 2));
 
         connection.trigger("updateActivity", payload);
     }
+
 
     function getMessage() {
         return $("#select1").find("option:selected").attr("value").trim();
