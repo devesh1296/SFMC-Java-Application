@@ -147,7 +147,7 @@ define(["postmonger"], function (Postmonger) {
             let inputElement;
 
             // 1. Dropdown for FirstName and CID
-            if (["FirstName", "CID"].includes(field.name)) {
+            if (["emailAddress"].includes(field.name)) {
                 inputElement = document.createElement("select");
                 inputElement.id = field.name;
 
