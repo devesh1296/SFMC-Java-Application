@@ -97,35 +97,118 @@ define(["postmonger"], function (Postmonger) {
         }
     }
 
-    function requestSch (data) {
-        // save schema
+    // function requestSch (data) {
+    //     // save schema
+    //     console.log('Inside Save Method RequestedSchema');
+    //     schema = data.schema;
+    //     if (selectElement) {
+    //         // Clear existing options
+    //         selectElement.innerHTML = "";
+    //
+    //         // Add a default option
+    //         const defaultOption = document.createElement("option");
+    //         defaultOption.text = "Select a Field";
+    //         defaultOption.value = "";
+    //         selectElement.appendChild(defaultOption);
+    //
+    //         // Populate the dropdown with schema fields
+    //         for (let i = 0; i < schema.length; i++) {
+    //             const field = schema[i];
+    //             const option = document.createElement("option");
+    //             option.text = field.name; // Display the field name
+    //             option.value = "{{" + field.key + "}}"; // Use the field key as the option value
+    //             selectElement.appendChild(option);
+    //         }
+    //     } else {
+    //         console.error("selectElement is not defined. Make sure the dropdown ID is correct and the code runs after the DOM is ready.");
+    //     }
+    //     console.log('*** Schema ***', JSON.stringify(data, null, 2));
+    // }
+
+    function requestSch(data) {
         console.log('Inside Save Method RequestedSchema');
         schema = data.schema;
-        window.schema = data.schema;
-        console.log("Schema set to:", window.schema);
-        // if (selectElement) {
-        //     // Clear existing options
-        //     selectElement.innerHTML = "";
-        //
-        //     // Add a default option
-        //     const defaultOption = document.createElement("option");
-        //     defaultOption.text = "Select a Field";
-        //     defaultOption.value = "";
-        //     selectElement.appendChild(defaultOption);
-        //
-        //     // Populate the dropdown with schema fields
-        //     for (let i = 0; i < schema.length; i++) {
-        //         const field = schema[i];
-        //         const option = document.createElement("option");
-        //         option.text = field.name; // Display the field name
-        //         option.value = "{{" + field.key + "}}"; // Use the field key as the option value
-        //         selectElement.appendChild(option);
-        //     }
-        // } else {
-        //     console.error("selectElement is not defined. Make sure the dropdown ID is correct and the code runs after the DOM is ready.");
-        // }
-        console.log('*** Schema ***', JSON.stringify(data, null, 2));
+
+        const container = document.createElement("div");
+        container.id = "dynamicFieldsContainer";
+
+        // Clean old content
+        const existing = document.getElementById("dynamicFieldsContainer");
+        if (existing) existing.remove();
+
+        const form = document.createElement("form");
+        form.id = "dynamicForm";
+
+        schema.forEach((field) => {
+            const label = document.createElement("label");
+            label.innerText = field.name;
+            label.style.display = "block";
+
+            let inputElement;
+
+            // 1. Dropdown for FirstName and CID
+            if (["FirstName", "CID"].includes(field.name)) {
+                inputElement = document.createElement("select");
+                inputElement.id = field.name;
+
+                const defaultOption = document.createElement("option");
+                defaultOption.value = "";
+                defaultOption.text = `-- Select ${field.name} --`;
+                inputElement.appendChild(defaultOption);
+
+                const dynamicOption = document.createElement("option");
+                dynamicOption.value = `{{${field.key}}}`;
+                dynamicOption.text = `{{${field.name}}}`;
+                inputElement.appendChild(dynamicOption);
+            }
+
+            // 2. Platform dropdown
+            else if (field.name === "Platform") {
+                inputElement = document.createElement("select");
+                inputElement.id = "Platform";
+
+                ["", "android", "ios"].forEach((opt) => {
+                    const option = document.createElement("option");
+                    option.value = opt;
+                    option.text = opt === "" ? "-- Select Platform --" : opt;
+                    inputElement.appendChild(option);
+                });
+            }
+
+            // 3. message box (multiline with char limit and variable insertion)
+            else if (field.name === "message") {
+                inputElement = document.createElement("textarea");
+                inputElement.id = "message";
+                inputElement.maxLength = 160;
+                inputElement.rows = 4;
+                inputElement.cols = 40;
+                inputElement.placeholder = "Type your message here...";
+
+                const helper = document.createElement("small");
+                helper.innerText = `Character limit: 160. Use if needed.`;
+                form.appendChild(helper);
+            }
+
+            // 4. deeplink / imageurl - single line input
+            else if (["deeplink", "imageurl"].includes(field.name)) {
+                inputElement = document.createElement("input");
+                inputElement.type = "text";
+                inputElement.id = field.name;
+                inputElement.maxLength = field.length || 1000;
+                inputElement.placeholder = `Enter ${field.name}`;
+            }
+
+            if (inputElement) {
+                inputElement.style.marginBottom = "10px";
+                form.appendChild(label);
+                form.appendChild(inputElement);
+            }
+        });
+
+        container.appendChild(form);
+        document.getElementById("step1").appendChild(container);
     }
+
 
     function requestTriggerEvent (eventDefinitionModel) {
         console.log('Inside RequestTriggerEvent');
