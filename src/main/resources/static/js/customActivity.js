@@ -161,47 +161,59 @@ define(["postmonger"], function (Postmonger) {
                 dynamicOption.text = field.name;
                 inputElement.appendChild(dynamicOption);
             }
-
-            // 2. Platform dropdown
-
-            inputElement = document.createElement("select");
-            inputElement.id = "Platform";
-
-            ["", "android", "ios"].forEach((opt) => {
-                const option = document.createElement("option");
-                option.value = opt;
-                option.text = opt === "" ? "-- Select Platform --" : opt;
-                inputElement.appendChild(option);
-            });
-
-            // 3. message box (multiline with char limit and variable insertion)
-            inputElement = document.createElement("textarea");
-            inputElement.id = "message";
-            inputElement.maxLength = 160;
-            inputElement.rows = 4;
-            inputElement.cols = 40;
-            inputElement.placeholder = "Type your message here...";
-
-            // 4. deeplink / imageurl - single line input
-
-            inputElement = document.createElement("input");
-            inputElement.type = "text";
-            inputElement.id = "deeplink";
-            inputElement.maxLength = field.length || 1000;
-            inputElement.placeholder = `Enter deeplink`;
-
-            inputElement = document.createElement("input");
-            inputElement.type = "text";
-            inputElement.id = "imageurl";
-            inputElement.maxLength = field.length || 1000;
-            inputElement.placeholder = `Enter imageurl`;
-
-
             if (inputElement) {
                 inputElement.style.marginBottom = "10px";
                 form.appendChild(label);
                 form.appendChild(inputElement);
             }
+        });
+        // 2. Always add Platform dropdown
+        const platformLabel = document.createElement("label");
+        platformLabel.innerText = "Platform";
+        platformLabel.style.display = "block";
+
+        const platformSelect = document.createElement("select");
+        platformSelect.id = "Platform";
+
+        ["", "android", "ios"].forEach((opt) => {
+            const option = document.createElement("option");
+            option.value = opt;
+            option.text = opt === "" ? "-- Select Platform --" : opt;
+            platformSelect.appendChild(option);
+        });
+
+        form.appendChild(platformLabel);
+        form.appendChild(platformSelect);
+
+        // 3. Always add message box with Hi {{FirstName}} prefilled if found in schema
+        const messageLabel = document.createElement("label");
+        messageLabel.innerText = "Message";
+        messageLabel.style.display = "block";
+
+        const messageArea = document.createElement("textarea");
+        messageArea.id = "message";
+        messageArea.rows = 4;
+        messageArea.cols = 40;
+        messageArea.maxLength = 500;
+        messageArea.placeholder = "Type your message here...";
+
+        form.appendChild(messageLabel);
+        form.appendChild(messageArea);
+
+        // 4. Always add deeplink and imageurl
+        ["deeplink", "imageurl"].forEach((fieldName) => {
+            const label = document.createElement("label");
+            label.innerText = fieldName;
+            label.style.display = "block";
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.id = fieldName;
+            input.placeholder = `Enter ${fieldName}`;
+            input.style.marginBottom = "10px";
+
+            form.appendChild(label);
+            form.appendChild(input);
         });
 
         container.appendChild(form);
@@ -344,10 +356,8 @@ define(["postmonger"], function (Postmonger) {
     function save() {
         console.log('Inside Save Method');
 
-        // Set activity name (optional, based on a field or static)
-        payload.name = "Custom SMS Activity";
+        payload.name = "Custom RDNC Activity";
 
-        // Build inArguments from all dynamic inputs
         const inArguments = [];
 
         const formElements = document.querySelectorAll("#dynamicForm input, #dynamicForm select, #dynamicForm textarea");
@@ -355,6 +365,7 @@ define(["postmonger"], function (Postmonger) {
         formElements.forEach((element) => {
             const key = element.id;
             const value = element.value?.trim() ?? "";
+
             if (key && value !== "") {
                 const arg = {};
                 arg[key] = value;
@@ -364,15 +375,15 @@ define(["postmonger"], function (Postmonger) {
 
         payload.arguments = payload.arguments || {};
         payload.arguments.execute = payload.arguments.execute || {};
-
         payload.arguments.execute.inArguments = inArguments;
+
         payload.metaData = payload.metaData || {};
         payload.metaData.isConfigured = true;
 
-        console.log("Saving Payload:", JSON.stringify(payload, null, 2));
-
+        console.log("Final Payload:", JSON.stringify(payload, null, 2));
         connection.trigger("updateActivity", payload);
     }
+
 
 
     function getMessage() {
