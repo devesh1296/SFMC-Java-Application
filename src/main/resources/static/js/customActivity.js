@@ -356,7 +356,7 @@ define(["postmonger"], function (Postmonger) {
     function save() {
         console.log('Inside Save Method');
 
-        payload.name = "Custom RDNC Activity";
+        payload.name = "Custom P13 Activity";
 
         const inArguments = [];
 
