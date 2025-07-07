@@ -58,7 +58,15 @@
     "arguments": {
       "execute": {
         "inArguments": [],
-        "outArguments": []
+        "outArguments": [
+          {
+            "result": {
+              "dataType": "Object",
+              "direction": "out",
+              "access": "visible"
+            }
+          }
+        ]
       }
     }
   }

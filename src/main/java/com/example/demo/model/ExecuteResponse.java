@@ -1,18 +1,16 @@
 package com.example.demo.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+
+@Getter
+@Setter
 public class ExecuteResponse {
-    private String foundSignupDate;
-    private String alternateSignupDate;
 
-    public String getFoundSignupDate() {
-        return foundSignupDate;
-    }
-
-    public String getAlternateSignupDate() {return alternateSignupDate;}
-
-    public void setFoundSignupDate(String foundSignupDate) {
-        this.foundSignupDate = foundSignupDate;
-    }
-
-    public void setAlternateSignupDate(String alternateSignupDate) {this.alternateSignupDate = alternateSignupDate;}
+    private String reqId;
+    private String cid;
+    private ArrayList<Product> products;
+    private Test test;
 }
