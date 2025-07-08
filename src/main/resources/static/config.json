@@ -64,7 +64,7 @@
         "inArguments": [],
         "outArguments": [
           {
-            "result": {
+            "executeResponse": {
               "dataType": "Text",
               "direction": "out",
               "access": "visible"
