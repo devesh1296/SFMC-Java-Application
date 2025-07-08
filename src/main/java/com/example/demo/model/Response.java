@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class Response {
 
-    private ExecuteResponse executeResponse;
+    private String executeResponse;
 }

@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 import com.example.demo.model.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 @RequestMapping("/api")
 public class SfmcController {
     @PostMapping(value = "/execute")
-    public ResponseEntity<Object> execute(@RequestBody JsonNode requestBody) {
+    public ResponseEntity<Object> execute(@RequestBody JsonNode requestBody) throws JsonProcessingException {
         System.out.println("This is the SFMC execute endpoint");
         System.out.println("Received request: " + requestBody.toString());
         Response response = new Response();
@@ -76,7 +78,7 @@ public class SfmcController {
 
         executeResponse.setProducts(products);
 
-        response.setExecuteResponse(executeResponse);
+        response.setExecuteResponse(new ObjectMapper().writeValueAsString(executeResponse));
 
         ApiResponse apiResponse = new ApiResponse();
         Result result = new Result();
@@ -84,7 +86,7 @@ public class SfmcController {
         result.setStatus("SUCCESS");
         apiResponse.setResult(result);
 
-        return ResponseEntity.ok(apiResponse);
+        return ResponseEntity.ok(response);
     }
     @PostMapping(value = "/save")
     public ResponseEntity<String> save(@RequestBody JsonNode requestBody) {

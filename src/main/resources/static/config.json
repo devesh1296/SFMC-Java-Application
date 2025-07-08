@@ -15,7 +15,11 @@
   "arguments": {
     "execute": {
       "inArguments": [],
-      "outArguments": [],
+      "outArguments": [
+        {
+          "executeResponse": "default"
+        }
+      ],
       "url": "https://sfmc-java-application-3.onrender.com/api/execute",
       "timeout": 20000
     }
@@ -61,7 +65,7 @@
         "outArguments": [
           {
             "result": {
-              "dataType": "Object",
+              "dataType": "Text",
               "direction": "out",
               "access": "visible"
             }
