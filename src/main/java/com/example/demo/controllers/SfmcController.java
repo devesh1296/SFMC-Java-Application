@@ -53,7 +53,7 @@ public class SfmcController {
         test.setTestA(testA);
         test.setTestB(testB);
         test.setTestC(testC);
-        executeResponse.setTest(test);
+        //executeResponse.setTest(test);
 
 
         Product product1 = new Product();
@@ -86,7 +86,7 @@ public class SfmcController {
         result.setStatus("SUCCESS");
         apiResponse.setResult(result);
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(executeResponse);
     }
     @PostMapping(value = "/save")
     public ResponseEntity<String> save(@RequestBody JsonNode requestBody) {

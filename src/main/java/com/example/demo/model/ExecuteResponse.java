@@ -12,5 +12,5 @@ public class ExecuteResponse {
     private String reqId;
     private String cid;
     private ArrayList<Product> products;
-    private Test test;
+//    private Test test;
 }
