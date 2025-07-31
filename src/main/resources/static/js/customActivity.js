@@ -129,6 +129,51 @@ define(["postmonger"], function (Postmonger) {
         console.log('Inside Save Method RequestedSchema');
         schema = data.schema;
 
+        if (!document.getElementById("dynamicFormStyle")) {
+            const style = document.createElement("style");
+            style.id = "dynamicFormStyle";
+            style.innerHTML = `
+          #dynamicForm {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f9f9fb;
+            padding: 24px 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            max-width: 480px;
+            margin: 24px auto;
+          }
+          #dynamicForm label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+            display: block;
+          }
+          #dynamicForm input,
+          #dynamicForm select,
+          #dynamicForm textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 15px;
+            background: #fff;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+          }
+          #dynamicForm input:focus,
+          #dynamicForm select:focus,
+          #dynamicForm textarea:focus {
+            border-color: #6366f1;
+            outline: none;
+          }
+          #dynamicForm textarea {
+            resize: vertical;
+          }
+        `;
+            document.head.appendChild(style);
+        }
+
         const container = document.createElement("div");
         container.id = "dynamicFieldsContainer";
 
@@ -174,8 +219,8 @@ define(["postmonger"], function (Postmonger) {
 
         const platformSelect = document.createElement("select");
         platformSelect.id = "Platform";
-
-        ["", "android", "ios"].forEach((opt) => {
+        platformSelect.multiple = true;
+        ["", "ANDROID", "IOS", "WEB", "ALL"].forEach((opt) => {
             const option = document.createElement("option");
             option.value = opt;
             option.text = opt === "" ? "-- Select Platform --" : opt;
@@ -184,6 +229,21 @@ define(["postmonger"], function (Postmonger) {
 
         form.appendChild(platformLabel);
         form.appendChild(platformSelect);
+
+        ["Title", "Url", "Image Url"].forEach((fieldName) => {
+            const label = document.createElement("label");
+            label.innerText = fieldName;
+            label.style.display = "block";
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.id = fieldName;
+            input.placeholder = `Enter ${fieldName}`;
+            input.style.marginBottom = "10px";
+
+            form.appendChild(label);
+            form.appendChild(input);
+        });
 
         // 3. Always add message box with Hi {{FirstName}} prefilled if found in schema
         const messageLabel = document.createElement("label");
@@ -200,21 +260,6 @@ define(["postmonger"], function (Postmonger) {
         form.appendChild(messageLabel);
         form.appendChild(messageArea);
 
-        // 4. Always add deeplink and imageurl
-        ["deeplink", "imageurl"].forEach((fieldName) => {
-            const label = document.createElement("label");
-            label.innerText = fieldName;
-            label.style.display = "block";
-
-            const input = document.createElement("input");
-            input.type = "text";
-            input.id = fieldName;
-            input.placeholder = `Enter ${fieldName}`;
-            input.style.marginBottom = "10px";
-
-            form.appendChild(label);
-            form.appendChild(input);
-        });
 
         container.appendChild(form);
         document.getElementById("step1").appendChild(container);
