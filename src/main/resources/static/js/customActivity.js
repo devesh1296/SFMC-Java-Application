@@ -219,7 +219,6 @@ define(["postmonger"], function (Postmonger) {
 
         const platformSelect = document.createElement("select");
         platformSelect.id = "Platform";
-        platformSelect.multiple = true;
         ["", "ANDROID", "IOS", "WEB", "ALL"].forEach((opt) => {
             const option = document.createElement("option");
             option.value = opt;
