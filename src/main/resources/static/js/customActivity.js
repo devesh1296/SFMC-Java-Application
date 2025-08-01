@@ -42,19 +42,6 @@ define(["postmonger"], function (Postmonger) {
             ? payload["arguments"].execute.inArguments
             : {};
         console.log("In arguments: ", inArguments);
-        $.each(inArguments, function (index, inArgument) {
-            $.each(inArgument, function (key, val) {
-                if (key === "message") {
-                    message = val;
-                }
-            });
-        });
-
-        // If there is no message selected, disable the next button
-        if (!message) {
-            connection.trigger("updateButton", { button: "next", enabled: false });
-            // If there is a message, skip to the summary step
-        }
     }
 
     function requestSch(data) {
