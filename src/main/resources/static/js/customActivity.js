@@ -44,6 +44,15 @@ define(["postmonger"], function (Postmonger) {
 
     function requestSch(data) {
         console.log('Inside Save Method RequestedSchema');
+
+        // Clear old inArguments from payload
+        if (
+            payload.arguments &&
+            payload.arguments.execute &&
+            Array.isArray(payload.arguments.execute.inArguments)
+        ) {
+            payload.arguments.execute.inArguments = [];
+        }
         schema = data.schema;
 
         if (!document.getElementById("dynamicFormStyle")) {
