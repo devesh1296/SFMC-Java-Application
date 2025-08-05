@@ -29,8 +29,6 @@ define(["postmonger"], function (Postmonger) {
         if (data) {
             payload = data;
         }
-
-        var message;
         var hasInArguments = Boolean(
             payload["arguments"] &&
             payload["arguments"].execute &&
@@ -103,35 +101,6 @@ define(["postmonger"], function (Postmonger) {
         const form = document.createElement("form");
         form.id = "dynamicForm";
 
-        // schema.forEach((field) => {
-        //     const label = document.createElement("label");
-        //     label.innerText = field.name;
-        //     label.style.display = "block";
-        //
-        //     let inputElement;
-        //
-        //     // 1. Dropdown for FirstName and CID
-        //     if (["emailAddress", "CID", "FirstName"].includes(field.name)) {
-        //         inputElement = document.createElement("select");
-        //         inputElement.id = field.name;
-        //
-        //         const defaultOption = document.createElement("option");
-        //         defaultOption.value = "";
-        //         defaultOption.text = `-- Select ${field.name} --`;
-        //         inputElement.appendChild(defaultOption);
-        //
-        //         const dynamicOption = document.createElement("option");
-        //         dynamicOption.value = `{{${field.key}}}`;
-        //         dynamicOption.text = field.name;
-        //         inputElement.appendChild(dynamicOption);
-        //     }
-        //     if (inputElement) {
-        //         inputElement.style.marginBottom = "10px";
-        //         form.appendChild(label);
-        //         form.appendChild(inputElement);
-        //     }
-        // });
-        // 2. Always add Platform dropdown
         const platformLabel = document.createElement("label");
         platformLabel.innerText = "Platform";
         platformLabel.style.display = "block";
@@ -195,6 +164,7 @@ define(["postmonger"], function (Postmonger) {
 
     function save() {
         console.log('Inside Save Method');
+        console.log('Schema:', schema);
 
         payload.name = "Custom RDNC Activity";
 
@@ -206,16 +176,26 @@ define(["postmonger"], function (Postmonger) {
             const key = element.id;
             const value = element.value?.trim() ?? "";
 
-            if (key && value !== "") {
+            if (key && value) {
                 const arg = {};
                 arg[key] = value;
                 inArguments.push(arg);
             }
         });
+        schema.forEach((field) => {
+            const key = field.name;
+            const value = `{{${field.key}}}`;
+            if (key && value) {
+                const arg = {};
+                arg[key] = value;
+                inArguments.push(arg);
+            }
+        })
 
         payload.arguments = payload.arguments || {};
         payload.arguments.execute = payload.arguments.execute || {};
         payload.arguments.execute.inArguments = inArguments;
+
 
         payload.metaData = payload.metaData || {};
         payload.metaData.isConfigured = true;
