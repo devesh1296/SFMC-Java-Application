@@ -44,15 +44,6 @@ define(["postmonger"], function (Postmonger) {
 
     function requestSch(data) {
         console.log('Inside Save Method RequestedSchema');
-
-        // Clear old inArguments from payload
-        if (
-            payload.arguments &&
-            payload.arguments.execute &&
-            Array.isArray(payload.arguments.execute.inArguments)
-        ) {
-            payload.arguments.execute.inArguments = [];
-        }
         schema = data.schema;
 
         if (!document.getElementById("dynamicFormStyle")) {
@@ -103,9 +94,9 @@ define(["postmonger"], function (Postmonger) {
         const container = document.createElement("div");
         container.id = "dynamicFieldsContainer";
 
-        // Clean old content
-        const existing = document.getElementById("dynamicFieldsContainer");
-        if (existing) existing.remove();
+        // // Clean old content
+        // const existing = document.getElementById("dynamicFieldsContainer");
+        // if (existing) existing.remove();
 
         const form = document.createElement("form");
         form.id = "dynamicForm";
