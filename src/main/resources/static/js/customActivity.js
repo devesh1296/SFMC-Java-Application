@@ -10,9 +10,6 @@ define(["postmonger"], function (Postmonger) {
 
     connection.on("initActivity", initialize);
     connection.on('requestedSchema', requestSch);
-    connection.on("requestedTokens", onGetTokens);
-    connection.on("requestedEndpoints", onGetEndpoints);
-
     connection.on("clickedNext", save);
 
     function onRender() {
@@ -29,17 +26,6 @@ define(["postmonger"], function (Postmonger) {
         if (data) {
             payload = data;
         }
-        var hasInArguments = Boolean(
-            payload["arguments"] &&
-            payload["arguments"].execute &&
-            payload["arguments"].execute.inArguments &&
-            payload["arguments"].execute.inArguments.length > 0
-        );
-
-        var inArguments = hasInArguments
-            ? payload["arguments"].execute.inArguments
-            : {};
-        console.log("In arguments: ", inArguments);
     }
 
     function requestSch(data) {
@@ -94,9 +80,9 @@ define(["postmonger"], function (Postmonger) {
         const container = document.createElement("div");
         container.id = "dynamicFieldsContainer";
 
-        // // Clean old content
-        // const existing = document.getElementById("dynamicFieldsContainer");
-        // if (existing) existing.remove();
+        // Clean old content
+        const existing = document.getElementById("dynamicFieldsContainer");
+        if (existing) existing.remove();
 
         const form = document.createElement("form");
         form.id = "dynamicForm";
@@ -141,7 +127,6 @@ define(["postmonger"], function (Postmonger) {
         messageArea.id = "message";
         messageArea.rows = 4;
         messageArea.cols = 40;
-        messageArea.maxLength = 500;
         messageArea.placeholder = "Type your message here...";
 
         form.appendChild(messageLabel);
@@ -150,16 +135,6 @@ define(["postmonger"], function (Postmonger) {
 
         container.appendChild(form);
         document.getElementById("step1").appendChild(container);
-    }
-
-    function onGetTokens(tokens) {
-        // Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
-        // console.log(tokens);
-    }
-
-    function onGetEndpoints(endpoints) {
-        // Response: endpoints = { restHost: <url> } i.e. "rest.s1.qa1.exacttarget.com"
-        // console.log(endpoints);
     }
 
     function save() {
