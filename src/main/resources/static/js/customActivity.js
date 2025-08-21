@@ -32,8 +32,9 @@ define(["postmonger"], function (Postmonger) {
         console.log('Inside Save Method RequestedSchema');
         schema = data.schema;
 
-        if (!document.getElementById("dynamicFormStyle")) {
-            const style = document.createElement("style");
+        let style = document.getElementById("dynamicFormStyle");
+        if (!style) {
+            style = document.createElement("style");
             style.id = "dynamicFormStyle";
             style.innerHTML = `
           #dynamicForm {
@@ -76,6 +77,28 @@ define(["postmonger"], function (Postmonger) {
         `;
             document.head.appendChild(style);
         }
+
+        // Always add platform styles
+        style.innerHTML += `
+          .platform-box {
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: #fff;
+            padding: 16px;
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+          .platform-box label {
+            font-weight: 400;
+            margin-bottom: 0;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+        `;
 
         const container = document.createElement("div");
         container.id = "dynamicFieldsContainer";
