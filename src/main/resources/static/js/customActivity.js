@@ -91,17 +91,44 @@ define(["postmonger"], function (Postmonger) {
         platformLabel.innerText = "Platform";
         platformLabel.style.display = "block";
 
-        const platformSelect = document.createElement("select");
-        platformSelect.id = "Platform";
-        ["", "ANDROID", "IOS", "WEB", "ALL"].forEach((opt) => {
-            const option = document.createElement("option");
-            option.value = opt;
-            option.text = opt === "" ? "-- Select Platform --" : opt;
-            platformSelect.appendChild(option);
+        const platforms = ["ANDROID", "IOS", "WEB", "ALL"];
+        const platformContainer = document.createElement("div");
+        platformContainer.id = "PlatformContainer";
+
+        platforms.forEach((opt) => {
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.name = "Platform";
+            checkbox.value = opt;
+            checkbox.id = `Platform_${opt}`;
+
+            const label = document.createElement("label");
+            label.htmlFor = checkbox.id;
+            label.innerText = opt;
+            label.style.marginRight = "12px";
+
+            platformContainer.appendChild(checkbox);
+            platformContainer.appendChild(label);
         });
 
         form.appendChild(platformLabel);
+        form.appendChild(platformContainer);
+        form.appendChild(platformLabel);
         form.appendChild(platformSelect);
+
+        const tenantIdLabel = document.createElement("label");
+        tenantIdLabel.innerText = "Tenant Id";
+        tenantIdLabel.style.display = "block";
+
+        const tenantIdInput = document.createElement("input");
+        tenantIdInput.type = "text";
+        tenantIdInput.id = "Tenant Id";
+        tenantIdInput.value = "qxjed8";
+        tenantIdInput.readOnly = true;
+        tenantIdInput.style.background = "#f3f4f6";
+
+        form.appendChild(tenantIdLabel);
+        form.appendChild(tenantIdInput);
 
         ["Title", "Url", "Image Url"].forEach((fieldName) => {
             const label = document.createElement("label");
