@@ -113,8 +113,6 @@ define(["postmonger"], function (Postmonger) {
 
         form.appendChild(platformLabel);
         form.appendChild(platformContainer);
-        form.appendChild(platformLabel);
-        form.appendChild(platformSelect);
 
         const tenantIdLabel = document.createElement("label");
         tenantIdLabel.innerText = "Tenant Id";
