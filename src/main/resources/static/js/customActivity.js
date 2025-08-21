@@ -87,6 +87,26 @@ define(["postmonger"], function (Postmonger) {
         const form = document.createElement("form");
         form.id = "dynamicForm";
 
+        style.innerHTML += `
+  .platform-box {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    padding: 16px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .platform-box label {
+    font-weight: 400;
+    margin-bottom: 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+`;
         const platformLabel = document.createElement("label");
         platformLabel.innerText = "Platform";
         platformLabel.style.display = "block";
@@ -94,20 +114,20 @@ define(["postmonger"], function (Postmonger) {
         const platforms = ["ANDROID", "IOS", "WEB", "ALL"];
         const platformContainer = document.createElement("div");
         platformContainer.id = "PlatformContainer";
+        platformContainer.className = "platform-box";
 
         platforms.forEach((opt) => {
+            const label = document.createElement("label");
+            label.htmlFor = `Platform_${opt}`;
+
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.name = "Platform";
             checkbox.value = opt;
             checkbox.id = `Platform_${opt}`;
 
-            const label = document.createElement("label");
-            label.htmlFor = checkbox.id;
-            label.innerText = opt;
-            label.style.marginRight = "12px";
-
-            platformContainer.appendChild(checkbox);
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(opt));
             platformContainer.appendChild(label);
         });
 
@@ -169,8 +189,14 @@ define(["postmonger"], function (Postmonger) {
         payload.name = "Custom RDNC Activity";
 
         const inArguments = [];
+        // Collect platform values
+        const checkedPlatforms = Array.from(document.querySelectorAll('#PlatformContainer input[type="checkbox"]:checked'))
+            .map(cb => cb.value);
+        if (checkedPlatforms.length > 0) {
+            inArguments.push({ Platform: checkedPlatforms });
+        }
 
-        const formElements = document.querySelectorAll("#dynamicForm input, #dynamicForm select, #dynamicForm textarea");
+        const formElements = document.querySelectorAll("#dynamicForm input:not([type='checkbox']), #dynamicForm select, #dynamicForm textarea");
 
         formElements.forEach((element) => {
             const key = element.id;
