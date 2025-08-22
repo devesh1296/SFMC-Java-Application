@@ -111,36 +111,27 @@ define(["postmonger"], function (Postmonger) {
         form.id = "dynamicForm";
 
         style.innerHTML += `
-  .platform-box {
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    background: #fff;
-    padding: 10px 12px;
-    margin-bottom: 18px;
+  #PlatformContainer {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    margin-bottom: 18px;
   }
-
-  .platform-box label {
-    font-weight: 400;
-    color: #333;
-    display: flex;
+  #PlatformContainer label {
+    display: inline-flex !important;
     align-items: center;
     gap: 6px;
-    font-size: 14px;
-    background: #f9fafb;
-    padding: 6px 10px;
-    border: 1px solid #e5e7eb;
-    border-radius: 4px;
+    font-weight: 500;
+    font-size: 12px;   /* smaller text */
+    color: #333;
     cursor: pointer;
   }
-
-  .platform-box input[type="checkbox"] {
-    transform: scale(0.9);
+  #PlatformContainer input[type="checkbox"] {
+    transform: scale(0.85); /* slightly smaller checkbox */
     cursor: pointer;
   }
 `;
+
         const platformLabel = document.createElement("label");
         platformLabel.innerText = "Platform";
         platformLabel.style.display = "block";
@@ -148,17 +139,14 @@ define(["postmonger"], function (Postmonger) {
         const platforms = ["ANDROID", "IOS", "WEB", "ALL"];
         const platformContainer = document.createElement("div");
         platformContainer.id = "PlatformContainer";
-        platformContainer.className = "platform-box";
 
         platforms.forEach((opt) => {
             const label = document.createElement("label");
-            label.htmlFor = `Platform_${opt}`;
 
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.name = "Platform";
             checkbox.value = opt;
-            checkbox.id = `Platform_${opt}`;
 
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(opt));
