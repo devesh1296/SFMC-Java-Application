@@ -114,7 +114,7 @@ define(["postmonger"], function (Postmonger) {
   #PlatformContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 16px; /* space between options */
     margin-bottom: 18px;
   }
   #PlatformContainer label {
@@ -122,12 +122,13 @@ define(["postmonger"], function (Postmonger) {
     align-items: center;
     gap: 6px;
     font-weight: 500;
-    font-size: 12px;   /* smaller text */
+    font-size: 13px;
     color: #333;
     cursor: pointer;
   }
   #PlatformContainer input[type="checkbox"] {
-    transform: scale(0.85); /* slightly smaller checkbox */
+    margin: 0;
+    transform: scale(0.9);
     cursor: pointer;
   }
 `;
