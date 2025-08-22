@@ -1,10 +1,7 @@
 package com.example.demo.controllers;
-import com.example.demo.model.ExecuteResponse;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-
-import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api")
@@ -25,5 +22,11 @@ public class SfmcController {
         System.out.println("This is the SFMC publish endpoint");
         System.out.println("Received request: " + requestBody.toString());
         return ResponseEntity.ok("Published");
+    }
+    @PostMapping(value = "/validate")
+    public ResponseEntity<String> validate(@RequestBody JsonNode requestBody) {
+        System.out.println("This is the SFMC validate endpoint");
+        System.out.println("Received request: " + requestBody.toString());
+        return ResponseEntity.ok("Validated");
     }
 }
