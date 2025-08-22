@@ -16,16 +16,16 @@
     "execute": {
       "inArguments": [],
       "outArguments": [],
-      "url": "https://sfmc-java-application-2.onrender.com/api/execute",
+      "url": "https://sfmc-java-application-2.onrender.com/api/execute?id=123",
       "timeout": 20000
     }
   },
   "configurationArguments": {
     "save": {
-      "url": "https://sfmc-java-application-2.onrender.com/api/save"
+      "url": "https://sfmc-java-application-2.onrender.com/api/save?id=456"
     },
     "publish": {
-      "url": "https://sfmc-java-application-2.onrender.com/api/publish"
+      "url": "https://sfmc-java-application-2.onrender.com/api/publish?id=789"
     }
   },
   "userInterfaces": {
