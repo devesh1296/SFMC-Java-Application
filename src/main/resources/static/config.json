@@ -17,15 +17,26 @@
       "inArguments": [],
       "outArguments": [],
       "url": "https://sfmc-java-application-2.onrender.com/api/execute?id=123",
+      "useJwt": true,
+      "customerKey": "XjJcBpgfy9e52FYTczDBAiyrMU594My1",
       "timeout": 20000
     }
   },
   "configurationArguments": {
     "save": {
-      "url": "https://sfmc-java-application-2.onrender.com/api/save?id=456"
+      "url": "https://sfmc-java-application-2.onrender.com/api/save",
+      "useJwt": true,
+      "customerKey": "XjJcBpgfy9e52FYTczDBAiyrMU594My1"
     },
     "publish": {
-      "url": "https://sfmc-java-application-2.onrender.com/api/publish?id=789"
+      "url": "https://sfmc-java-application-2.onrender.com/api/publish",
+      "useJwt": true,
+      "customerKey": "XjJcBpgfy9e52FYTczDBAiyrMU594My1"
+    },
+    "validate": {
+      "url": "https://sfmc-java-application-2.onrender.com/api/validate",
+      "useJwt": true,
+      "customerKey": "XjJcBpgfy9e52FYTczDBAiyrMU594My1"
     }
   },
   "userInterfaces": {
