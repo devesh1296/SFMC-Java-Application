@@ -115,19 +115,30 @@ define(["postmonger"], function (Postmonger) {
     border: 1px solid #d1d5db;
     border-radius: 6px;
     background: #fff;
-    padding: 16px;
+    padding: 10px 12px;
     margin-bottom: 18px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 12px;
   }
+
   .platform-box label {
     font-weight: 400;
-    margin-bottom: 0;
     color: #333;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    font-size: 14px;
+    background: #f9fafb;
+    padding: 6px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .platform-box input[type="checkbox"] {
+    transform: scale(0.9);
+    cursor: pointer;
   }
 `;
         const platformLabel = document.createElement("label");
