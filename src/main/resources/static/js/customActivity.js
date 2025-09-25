@@ -192,7 +192,7 @@ define(["postmonger"], function (Postmonger) {
         messageLabel.style.display = "block";
 
         const messageArea = document.createElement("textarea");
-        messageArea.id = "message";
+        messageArea.id = "Message";
         messageArea.rows = 4;
         messageArea.cols = 40;
         messageArea.placeholder = "Type your message here...";
@@ -234,7 +234,7 @@ define(["postmonger"], function (Postmonger) {
         schema.forEach((field) => {
             const key = field.name;
             const value = `{{${field.key}}}`;
-            if (key && value) {
+            if (key && key === "cid" && value) {
                 const arg = {};
                 arg[key] = value;
                 inArguments.push(arg);
