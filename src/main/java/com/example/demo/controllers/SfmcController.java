@@ -92,9 +92,9 @@ public class SfmcController {
             executeResponse.setProducts(products);
 
             // Add contact info for traceability
-            String contactKey = contact.has("contactKey") ? contact.get("contactKey").asText() : "unknown";
-            executeResponse.setReqId("req-" + contactKey);
-            executeResponse.setCid("cid-" + contactKey);
+            String cid = contact.has("cid") ? contact.get("cid").asText() : "unknown";
+            executeResponse.setReqId("req-" + cid);
+            executeResponse.setCid(cid);
 
             responses.add(executeResponse);
         }
