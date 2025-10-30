@@ -33,7 +33,6 @@ public class SfmcController {
 
         try {
             Thread.sleep(simulatedTotalDelayMs);
-            Thread.sleep(200);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
